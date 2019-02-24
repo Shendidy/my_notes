@@ -18,4 +18,4 @@
 <% end %>
 </ol>
 <hr />
-<small> <%= link_to 'Edit category', action: 'edit' %> - <%= link_to 'Delete category and all notes related to it', @category, :method => :delete, data: { confirm: "Are you sure you want to delete this category with all notes related to it?\n\nOnce done you can\'t revoke this action!" } %> - <%= link_to 'Categories', action: 'index' %> - <%= link_to 'Notes', notes_path %></small>
+<small> <%= link_to 'Edit category', action: 'edit' %> - <%= link_to 'Delete category and all its notes', @category, :method => :delete, data: { confirm: "Are you sure you want to delete this category with all its notes?\n\nOnce done you can\'t revoke this action!" } %> - <%= link_to 'Categories', action: 'index' %> - <%= link_to 'Notes', notes_path %></small>
