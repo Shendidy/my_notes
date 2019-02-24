@@ -24,3 +24,5 @@ Set associations in models:
     - has_many :notes, dependent: :destroy
   - note.rb
     - belongs_to :category
+    
+Use partial for forms to ensure DRY code
