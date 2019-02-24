@@ -6,6 +6,6 @@
 <hr />
 <ol>
 <% @notes.each do |note| %>
-  <li><%= link_to note[:title], note %><small> (Created on: <%= note[:created_at].strftime("%b %d. %Y") %>)</small></li>
+  <li><%= link_to note[:title], note %><small> (Updated on: <%= note[:updated_at].strftime("%b %d. %Y") %>)</small></li>
 <% end %>
 </ol>

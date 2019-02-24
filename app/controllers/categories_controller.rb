@@ -1,10 +1,12 @@
 class CategoriesController < ApplicationController
+
+  before_action :find_category, only: [:show, :edit, :update, :destroy]
+
   def index
     @categories = Category.all
   end
 
   def show
-    @category = Category.find(params[:id])
     @notes = @category.notes #because of the associations in the model files we can call all notes in any specific category in this way.
   end
 
@@ -25,11 +27,9 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:id])
     if @category.update_attributes(category_params)
       flash[:alert] = "Your updated category has been saved."
       redirect_to category_path
@@ -40,7 +40,6 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
     if @category.destroy
       flash[:alert] = "Your category has been deleted successfully"
       redirect_to :action => 'index'
@@ -51,6 +50,11 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def find_category
+    @category = Category.find(params[:id])
+  end
+
   def category_params
     params.require(:category).permit(:name, :description)
   end

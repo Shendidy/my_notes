@@ -1,11 +1,12 @@
 class NotesController < ApplicationController
 
+  before_action :find_note, only: [:show, :edit, :update, :destroy]
+
   def index
     @notes = Note.all.order("updated_at DESC")
   end
 
   def show
-    @note = Note.find(params[:id])
     @category = Category.find(@note[:category_id])
   end
 
@@ -27,11 +28,9 @@ class NotesController < ApplicationController
   end
 
   def edit
-    @note = Note.find(params[:id])
   end
 
   def update
-    @note = Note.find(params[:id])
     if @note.update_attributes(note_params)
       flash[:alert] = "Your updated note has been saved."
       redirect_to note_path
@@ -42,7 +41,6 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note = Note.find(params[:id])
     if @note.destroy
       flash[:alert] = "Your note has been deleted successfully"
       redirect_to :action => 'index'
@@ -53,6 +51,11 @@ class NotesController < ApplicationController
   end
 
   private
+
+  def find_note
+    @note = Note.find(params[:id])
+  end
+
   def note_params
     params.require(:note).permit(:title, :body, :category_id)
   end
