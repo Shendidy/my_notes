@@ -1,0 +1,16 @@
+<h1>Edit your category</h1>
+<hr />
+<%= form_for @category do |category| %>
+  <p>
+    <%= category.label :name %><br />
+    <%= category.text_field :name %><br />
+  </p>
+  <p>
+    <%= category.label :description %><br />
+    <%= category.text_area :description %><br />
+  </p>
+  <p>
+    <%= category.submit 'Edit category' %>
+<% end %>
+<hr />
+<small><%= link_to 'Cancel', action: 'index' %></small>

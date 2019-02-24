@@ -1,0 +1,19 @@
+<h1>Add a new note</h1>
+<hr />
+<%= form_for @note do |note| %>
+  <p>
+    <%= note.label :title %><br />
+    <%= note.text_field :title %><br />
+  </p>
+  <p>
+    <%= note.label :body %><br />
+    <%= note.text_area :body %><br />
+  </p>
+  <p>
+    <%= note.select :category_id, Category.all.order('name').collect{ |x| [x.name, x.id]}, { :include_blank => "Select a category"} %><br />
+  </p>
+  <p>
+    <%= note.submit 'Add note' %>
+<% end %>
+<hr />
+<small><%= link_to 'Cancel', action: 'index' %></small>

@@ -1,0 +1,10 @@
+<h1>Your catigories list:</h1>
+<table>
+  <td><small><%= link_to "Create new category", new_category_path %></small></td>
+  <td><small><%= link_to "View available notes", notes_path %></small></td>
+</table>
+<hr />
+<ol>
+<% @categories.each do |category| %>
+  <li><%= link_to category[:name], category %><small> (Created on: <%= category[:created_at].strftime("%b %d. %Y") %> - Contains <%= category.notes.count %> notes)</small></li>
+<% end %>

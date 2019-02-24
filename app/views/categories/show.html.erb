@@ -1,0 +1,21 @@
+<h3><%= @category[:name] %></h3>
+<small>
+  <%= @category[:created_at].strftime("%b %d. %Y - %H:%M:%S") %>
+  <% if @category[:created_at] != @category[:updated_at] %>
+    <small> - updated on: <%= @category[:updated_at].strftime("%b %d. %Y - %H:%M:%S") %></small>
+  <% end %>
+</small>
+<hr>
+<table>
+  <td><h3>Description:</h3></td>
+  <td><p><%= @category[:description] %></p></td>
+</table>
+<ol>
+<% if @notes.each do |note| %>
+  <li><%= link_to note.title, note_path(:id => note.id) %></li>
+<% end.empty? %>
+  <p>Sorry, no notes are available in this category!</p>
+<% end %>
+</ol>
+<hr />
+<small> <%= link_to 'Edit category', action: 'edit' %> - <%= link_to 'Delete category and all notes related to it', @category, :method => :delete, data: { confirm: "Are you sure you want to delete this category with all notes related to it?\n\nOnce done you can\'t revoke this action!" } %> - <%= link_to 'Categories', action: 'index' %> - <%= link_to 'Notes', notes_path %></small>

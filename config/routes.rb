@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :notes, :categories
+
+  get 'notes/index'
+  get 'notes/edit'
+  get 'notes/new'
+  get 'notes/show'
+  get 'categories/index'
+  get 'categories/edit'
+  get 'categories/new'
+  get 'categories/show'
+  get 'home/index'
+
+  root to:'home#index'
 end

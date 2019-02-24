@@ -1,6 +1,6 @@
-class CreatePosts < ActiveRecord::Migration[5.2]
+class CreateNotes < ActiveRecord::Migration[5.2]
   def change
-    create_table :posts do |t|
+    create_table :notes do |t|
       t.integer :owner_id
       t.string :title
       t.text :body
