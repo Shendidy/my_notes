@@ -41,6 +41,6 @@ Start implementing a user system:
   - Go to db/migrate/2019xxxx the latest migrate file created and fix to your requirements.
   - Run: rake db:migrate
   - PS. if after the past few steps you get an undefined method error on loading your pages, try disconnecting the server then reconnect.
-  - Make sure to update the model .rb files to reflex belongs_to and has_many
+  - Make sure to update the model .rb files to reflect belongs_to and has_many
   - I needed to use rails g migration rename_column :table, :old_column, :new_column to change in notes owner_id to user_id in both notes and categories tables.
   - In notes controller update new and update methods from @note = Note.new to @note = current_user.notes.build
