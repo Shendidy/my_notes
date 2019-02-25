@@ -6,5 +6,7 @@
 <hr />
 <ol>
 <% @categories.each do |category| %>
-  <li><%= link_to category[:name], category %><small> (Updated on: <%= category[:updated_at].strftime("%b %d. %Y") %> - Contains <%= category.notes.count %> notes)</small></li>
+  <% if category.user_id === current_user.id %>
+    <li><%= link_to category[:name], category %><small> (Updated on: <%= category[:updated_at].strftime("%b %d. %Y") %> - Contains <%= category.notes.count %> <%= category.notes.count > 1 || category.notes.count < 1 ? 'notes' : 'note'%>)</small></li>
+  <% end %>
 <% end %>

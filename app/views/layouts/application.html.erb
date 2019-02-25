@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <p>Hello <%= current_user.email.split('@')[0].capitalize %> | <%= link_to 'Log out', destroy_user_session_path, method: :delete %> </p>
+    <% end %>
     <%= render 'layouts/alerts' %>
     <%= yield %>
   </body>

@@ -1,9 +1,10 @@
 class CategoriesController < ApplicationController
 
   before_action :find_category, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
-    @categories = Category.all
+    @categories = Category.where(user_id: current_user.id)
   end
 
   def show
@@ -16,7 +17,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    @category.owner_id = 1
+    @category.user_id = current_user.id
     if @category.save
       flash[:alert] = 'Your new category has been successfully created.'
       redirect_to :action => 'index'

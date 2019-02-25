@@ -6,6 +6,8 @@
 <hr />
 <ol>
 <% @notes.each do |note| %>
-  <li><%= link_to note[:title], note %><small> (Updated on: <%= note[:updated_at].strftime("%b %d. %Y") %> - Category: <%= link_to note.category.name, category_path(note.category_id) %>)</small></li>
+  <% if note.user_id === current_user.id %>
+    <li><%= link_to note[:title], note %><small> (Updated on: <%= note[:updated_at].strftime("%b %d. %Y") %> - Category: <%= link_to note.category.name, category_path(note.category_id) %>)</small></li>
+  <% end %>
 <% end %>
 </ol>

@@ -8,7 +8,7 @@
     <%= note.text_area :body %><br />
   </p>
   <p>
-    <%= note.select :category_id, Category.all.order('name').collect{ |x| [x.name, x.id]}, { :include_blank => "Select a category"} %><br />
+    <%= note.select :category_id, Category.where(user_id: current_user.id).order('name').collect{ |x| [x.name, x.id]}, { :include_blank => "Select a category"} %><br />
   </p>
   <p>
     <%= note.submit 'Add note' %>

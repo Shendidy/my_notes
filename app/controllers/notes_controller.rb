@@ -1,9 +1,10 @@
 class NotesController < ApplicationController
 
   before_action :find_note, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
-    @notes = Note.all.order("updated_at DESC")
+    @notes = Note.where(user_id: current_user.id).order("updated_at DESC")
   end
 
   def show
@@ -11,13 +12,13 @@ class NotesController < ApplicationController
   end
 
   def new
-    @note = Note.new
-    @categories = Category.all
+    @note = current_user.notes.build
+    @categories = Category.where(user_id: current_user.id)
   end
 
   def create
-    @note = Note.new(note_params)
-    @note.owner_id = 1
+    @note = current_user.notes.build(note_params)
+    @note.user_id = current_user.id
     if @note.save
       flash[:alert] = "Your note has been saved"
       redirect_to :action => 'index'
@@ -57,6 +58,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:title, :body, :category_id)
+    params.require(:note).permit(:title, :body, :category_id, :user_id)
   end
 end
