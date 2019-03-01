@@ -17,28 +17,6 @@
   <% @note[:body].split("\n").each do |line| %>
     <p><%= line %></p>
   <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-  <% @note[:body].split("\n").each do |pars| %>
-    <p><%= pars %></p>
-  <% end %>
->>>>>>> Some minor fixes
   <hr />
   <small><%= link_to 'Edit note', action: 'edit' %> -
   <%= link_to 'Delete note', @note, :method => :delete, data: { confirm: "Are you sure you want to delete this note?" } %> - <%= link_to 'Categories', categories_path %> - <%= link_to 'Notes', notes_path %></small>
