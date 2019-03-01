@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # ----------
 
   def after_sign_in_path_for(resource)
-    categories_path
+    notes_path
   end
 
   # To facilitate signing up with a user_name or email
