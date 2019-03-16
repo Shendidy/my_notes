@@ -1,8 +1,7 @@
-<h1>Your notes list: </h1>
-<table>
-  <td><small><%= link_to "Create new note", new_note_path %></small></td>
-  <td><small><%= link_to "View abailable categories", categories_path %></small></td>
-</table>
+<div class="notesLisDiv" style="text-align: center;">
+  <h1 style="margin: 0 auto;">Your notes list: </h1>
+</div>
+<p><%= link_to "View available categories", categories_path %></p>
 <hr />
 <ol>
 <% @notes.each do |note| %>

@@ -1,8 +1,7 @@
-<h1>Your catigories list:</h1>
-<table>
-  <td><small><%= link_to "Create new category", new_category_path %></small></td>
-  <td><small><%= link_to "View available notes", notes_path %></small></td>
-</table>
+<div class="catigisLisDiv" style="text-align: center;">
+  <h1 style="margin: 0 auto;">Your catigories list:</h1>
+</div>
+<p><%= link_to "View available notes", notes_path %></p>
 <hr />
 <ol>
 <% @categories.each do |category| %>
