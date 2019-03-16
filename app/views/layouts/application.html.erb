@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MyNotes</title>
+    <style>
+    .body {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url(/assets/bg01.jpg);
+      background-attachment: fixed;
+    }
+
+     #navigation{
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 9999;
+    }
+    </style>
+    <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <title>My Notes</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
-    <% if current_user %>
-      <p>Hello <%= current_user.email.split('@')[0].capitalize %> - <small><%= link_to "Create new note", new_note_path %> - <small><%= link_to "Create new category", new_category_path %></small> | <%= link_to 'Log out', destroy_user_session_path, method: :delete %> </p>
-    <% end %>
+  <body class="body">
+    <nav id="navigation" class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+      <a class="navbar-brand" style="color: white;">
+        <% if current_user %>
+          <nav class="navLeft" style="width: 75%; color: white;">
+            <%= current_user.email.split('@')[0].capitalize %>'s Notes - <small><%= link_to "Create new note", new_note_path, style:"color:white;" %></small> - <small><%= link_to "Create new category", new_category_path, style:"color:white;" %></small>
+          </nav>
+          <nav class="navRight" style="width: 25%; text-align: right;">
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, style:"color:white;" %>
+          </nav>
+        <% end %>
+      </a>
+    </nav>
     <%= render 'layouts/alerts' %>
-    <%= yield %>
+    <nav class="contentNav" style="width: 600px; background: white; margin: 0 auto;">
+      <%= yield %>
+    </nav>
   </body>
 </html>
