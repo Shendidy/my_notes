@@ -5,12 +5,12 @@
   </p>
   <p>
     <%= note.label :body %><br />
-    <%= note.text_area :body %><br />
+    <%= note.text_area :body, cols: "50", rows: "6" %><br />
   </p>
   <p>
     <%= note.select :category_id, Category.where(user_id: current_user.id).order('name').collect{ |x| [x.name, x.id]}, { :include_blank => "Select a category"} %><br />
   </p>
   <p>
-    <%= note.submit 'Add note' %>
+    <%= note.submit 'Save note' %>
   </p>
 <% end %>
