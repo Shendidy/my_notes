@@ -1,25 +1,26 @@
 <% if @note.user_id == current_user.id %>
-  <h3><%= @note[:title] %></h3>
-  <small>
-    <%= @note[:created_at].strftime("%b %d. %Y - %H:%M:%S") %>
-    <% if @note[:created_at] != @note[:updated_at] %>
-      <small> - updated on: <%= @note[:updated_at].strftime("%b %d. %Y - %H:%M:%S") %></small>
-    <% end %>
-  </small>
-  <hr>
+  <h1 style="margin: 0 auto; text-align: center;"><%= @note[:title] %></h1>
+  <nav class="updateNav" style="width: 600px; margin:0 auto; text-align: center;">
+    <small>
+      <%= @note[:created_at].strftime("%b %d. %Y - %H:%M:%S") %>
+      <% if @note[:created_at] != @note[:updated_at] %>
+        <small> - updated on: <%= @note[:updated_at].strftime("%b %d. %Y - %H:%M:%S") %></small>
+      <% end %>
+    </small>
+  </nav>
   <table>
     <tr>
-      <td><h3>Note Category:</h3></td>
-      <td><p><%= link_to @category[:name],category_path(:id => @note.category_id) %></p></td>
+      <td>Note Category: </td>
+      <td><%= link_to @category[:name],category_path(:id => @note.category_id) %></td>
     </tr>
   </table>
-  <h3>Note Body:</h3>
+
+  <small><%= link_to 'Edit note', action: 'edit' %> -
+  <%= link_to 'Delete note', @note, :method => :delete, data: { confirm: "Are you sure you want to delete this note?" } %> - <%= link_to 'Categories', categories_path %> - <%= link_to 'Notes', notes_path %></small>
+  <hr>
   <% @note[:body].split("\n").each do |line| %>
     <p><%= line %></p>
   <% end %>
-  <hr />
-  <small><%= link_to 'Edit note', action: 'edit' %> -
-  <%= link_to 'Delete note', @note, :method => :delete, data: { confirm: "Are you sure you want to delete this note?" } %> - <%= link_to 'Categories', categories_path %> - <%= link_to 'Notes', notes_path %></small>
 <% else %>
   <h3>Please follow one of the below links:</h3>
   <p><%= link_to 'Categories', action: 'index' %> - <%= link_to 'Notes', notes_path %></p>
