@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :notes, :categories
 
   # get 'notes/index'
-  # get 'notes/edit'
+  get 'posts/edit'
   # get 'notes/new'
   # get 'notes/show'
   # get 'categories/index'
