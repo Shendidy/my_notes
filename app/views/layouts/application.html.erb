@@ -33,7 +33,7 @@
       <a class="navbar-brand" style="color: white;">
         <% if current_user %>
           <nav class="navLeft" style="width: 75%; color: white;">
-            <%= current_user.email.split('@')[0].capitalize %>'s Notes - <small><%= link_to "Create new note", new_note_path, style:"color:white;" %></small> - <small><%= link_to "Create new category", new_category_path, style:"color:white;" %></small>
+            <%= current_user.user_name %>'s Notes - <small><%= link_to "Create new note", new_note_path, style:"color:white;" %></small> - <small><%= link_to "Create new category", new_category_path, style:"color:white;" %></small>
           </nav>
           <nav class="navRight" style="width: 25%; text-align: right;">
             <%= link_to "Sign out", destroy_user_session_path, method: :delete, style:"color:white;" %>
